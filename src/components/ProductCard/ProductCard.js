@@ -1,8 +1,8 @@
 import React from 'react';
-import { Card, Button, Badge } from 'react-bootstrap';
+import { Card, Button, Badge, InputGroup, FormControl } from 'react-bootstrap';
 import './ProductCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 const ProductCard = (props) => {
   const { title, price, category, description, image} = props.product;
@@ -20,10 +20,21 @@ const ProductCard = (props) => {
         <h6>Price: ${price}</h6>
       </Card.Footer>
       <Card.Footer  style={{ backgroundColor: 'white', border: 'none'}}>
-        <Button variant="dark">
+        <Button variant="dark" className="mx-auto">
           Add To cart
           <FontAwesomeIcon style={{marginLeft: '7px'}} icon={faShoppingCart}/>
           </Button>
+      </Card.Footer>
+      <Card.Footer style={{ backgroundColor: 'white', borderTop: 'none'}}>
+      <InputGroup style={{width: '130px'}} className="mx-auto">
+        <Button variant="dark">
+          <FontAwesomeIcon icon={faMinus}/>
+        </Button>
+        <FormControl aria-label="Buying Amount" />
+        <Button variant="dark">
+        <FontAwesomeIcon icon={faPlus}/>
+        </Button>
+      </InputGroup>
       </Card.Footer>
     </Card>
   );

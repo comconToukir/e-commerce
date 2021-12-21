@@ -14,8 +14,14 @@ const colorWhite = {
   color: 'white'
 }
 
-const Header = () => {
-  
+const Header = ({ categories }) => {
+  let array = categories.map((category, i) => {
+    let a = category.split(" ");
+    let b = a.map((word)=> word.charAt(0).toUpperCase() + word.slice(1))
+    let c = b.join(' ');
+    return c;
+  })
+  console.log(array);
   return (
     <>
       <Navbar style={colorWhite} collapseOnSelect expand={false} bg="dark" variant="dark">
@@ -27,18 +33,17 @@ const Header = () => {
               <Nav.Link href="#sport">Sport</Nav.Link>
               <Nav.Link href="#tech">Tech</Nav.Link> */}
 
-            <NavDropdown style={{color: 'white !important'}} className="ms-auto" title="Categories" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Electronics</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">Jewelry</NavDropdown.Item>
-              <NavDropdown.Item href="#action5">Men's Clothing</NavDropdown.Item>
-              <NavDropdown.Item href="#action3">Women's Clothing</NavDropdown.Item>
+            <NavDropdown style={{color: 'white !important'}} className="ms-auto" title="Categories" menuVariant="dark" id="navbarScrollingDropdown">
+              {
+                array.map((cat)=> <NavDropdown.Item href={"#"+cat}>{cat}</NavDropdown.Item>)
+              }
             </NavDropdown>
 
             <FontAwesomeIcon style={userIconStyle} icon={faUser}/>
 
             <Navbar.Toggle >
               <span className="ms-auto" aria-controls="offcanvasNavbar">
-                <FontAwesomeIcon style={userIconStyle} icon={faShoppingCart}/>
+                <FontAwesomeIcon style={colorWhite} icon={faShoppingCart}/>
               </span>
           </Navbar.Toggle>
           <Navbar.Offcanvas

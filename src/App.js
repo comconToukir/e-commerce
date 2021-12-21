@@ -11,15 +11,20 @@ function App() {
     const apiLink = 'https://fakestoreapi.com/products';
     fetch(apiLink)
                 .then(res=>res.json())
-                .then(json=>console.log(json))
-  }, [])
-  
+                .then(json=>setApiData(json))
+  }, []);
+
+  let dummyArray = [];
+  for (let i = 0; i < apiData.length; i++){
+    dummyArray.push(apiData[i].category)
+  }
+  const categories = [...new Set(dummyArray)]
 
   return (
     <div className='main'>
-      <Header />
+      <Header categories={categories} />
       <Carousel />
-      <Categories />
+      <Categories categories={categories} />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import { Container, Tabs, Tab } from 'react-bootstrap';
 import Electronics from '../Electronics/Electronics';
 import Jewelery from '../Jewelery/Jewelery';
