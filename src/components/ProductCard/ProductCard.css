@@ -1,0 +1,13 @@
+.card {
+  width: '240px';
+  margin: '5px';
+  border: 'none';
+  box-shadow: '2px 2px 7px lightgray';
+}
+
+.truncate-overflow {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+}

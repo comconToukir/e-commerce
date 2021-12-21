@@ -1,0 +1,17 @@
+.increased-legibility {
+  position: relative;
+  /* isolation: isolate; */
+  overflow: hidden;
+}
+
+.increased-legibility::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(0deg, rgba(223, 223, 223, 0.5), rgb(0 0 0 / 0));
+}
+
+.carousel-content {
+  z-index: 2;
+}

@@ -1,0 +1,13 @@
+.nav-hide {
+  position: relative;
+  top: -53px;
+  z-index: 2;
+  opacity: 1;
+}
+
+.cart-show {
+  /* z-index: -2; */
+  position: absolute;
+  opacity: 1;
+  z-index: 99999;
+}
