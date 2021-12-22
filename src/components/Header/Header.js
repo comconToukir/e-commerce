@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import './Header.css';
+import Cart from '../Cart/Cart';
 
 const userIconStyle = {
   marginRight: '1.5em',
@@ -49,6 +50,7 @@ const Header = ({ categories }) => {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <p>place for cart</p>
+                <Cart></Cart>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           

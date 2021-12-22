@@ -3,16 +3,29 @@ import { Card, Button, Badge, InputGroup } from 'react-bootstrap';
 import './ProductCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
+import { increaseAmount, decreaseAmount } from '../../state/action-creators/index';
 
 const ProductCard = (props) => {
   const { title, price, category, description, image} = props.product;
   const [amount, setAmount] = useState(0);
+  const dispatch = useDispatch();
+
+  const handlePlus = () => {
+    setAmount(amount + 1);
+    dispatch(increaseAmount(1))
+  }
+
+  const handleMinus = () => {
+    setAmount(amount - 1);
+    dispatch(decreaseAmount(1))
+  }
 
   const addToCart = () => {
     return ( amount < 1 ? 
       <Button 
         variant="dark"
-        onClick={()=>setAmount(1)}
+        onClick={()=>handlePlus()}
         >
         Add To cart
         <FontAwesomeIcon 
@@ -24,7 +37,7 @@ const ProductCard = (props) => {
       <InputGroup style={{width: '130px'}}>
         <Button 
           variant="dark"
-          onClick={()=>setAmount(amount - 1)}
+          onClick={()=>handleMinus()}
         >
           <FontAwesomeIcon icon={faMinus}/>
         </Button>
@@ -33,7 +46,7 @@ const ProductCard = (props) => {
         </div>
         <Button 
           variant="dark"
-          onClick={()=>setAmount(amount + 1)}
+          onClick={()=>handlePlus()}
         >
           <FontAwesomeIcon icon={faPlus}/>
         </Button>

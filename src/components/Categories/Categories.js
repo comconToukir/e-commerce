@@ -15,9 +15,9 @@ const Categories = ({categories, uniqueCategoryName, apiData}) => {
     let d = c.join("");
     return d;
   })
-  console.log(uniqueCategoryName);
-  console.log(categories);
-  console.log(eventName);
+  // console.log(uniqueCategoryName);
+  // console.log(categories);
+  // console.log(eventName);
 
 
 
