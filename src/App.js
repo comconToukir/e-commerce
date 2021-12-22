@@ -18,21 +18,35 @@ function App() {
   for (let i = 0; i < apiData.length; i++){
     array1.push(apiData[i].category)
   }
-  const array2 = [...new Set(array1)]
+  const uniqueCategoryName = [...new Set(array1)]
 
-  let categoryName = array2.map((category, i) => {
+  let categoryName = uniqueCategoryName.map((category) => {
     let a = category.split(" ");
     let b = a.map((word)=> word.charAt(0).toUpperCase() + word.slice(1))
     let c = b.join(' ');
     return c;
   })
-  console.log(array2);
+  
+  // let eventName = uniqueCategoryName.map((category) => {
+  //   let a = category.split(" ");
+  //   let b = a.map((word)=> word.charAt(0).toUpperCase() + word.slice(1))
+  //   let c = b.join('');
+  //   let d = c.split("'");
+  //   let e = d.join("");
+  //   return e;
+  // })
 
   return (
     <div className='main'>
-      <Header categories={categoryName} />
+      <Header 
+        categories={categoryName} 
+      />
       <Carousel />
-      <Categories categories={categoryName} />
+      <Categories 
+        categories={categoryName} 
+        uniqueCategoryName={uniqueCategoryName}
+        apiData={apiData}
+      />
     </div>
   );
 }

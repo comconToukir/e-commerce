@@ -15,13 +15,6 @@ const colorWhite = {
 }
 
 const Header = ({ categories }) => {
-  // let array = categories.map((category, i) => {
-  //   let a = category.split(" ");
-  //   let b = a.map((word)=> word.charAt(0).toUpperCase() + word.slice(1))
-  //   let c = b.join(' ');
-  //   return c;
-  // })
-  // console.log(categories);
   return (
     <>
       <Navbar style={colorWhite} collapseOnSelect expand={false} bg="dark" variant="dark">
