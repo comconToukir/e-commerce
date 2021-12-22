@@ -14,17 +14,25 @@ function App() {
                 .then(json=>setApiData(json))
   }, []);
 
-  let dummyArray = [];
+  let array1 = [];
   for (let i = 0; i < apiData.length; i++){
-    dummyArray.push(apiData[i].category)
+    array1.push(apiData[i].category)
   }
-  const categories = [...new Set(dummyArray)]
+  const array2 = [...new Set(array1)]
+
+  let categoryName = array2.map((category, i) => {
+    let a = category.split(" ");
+    let b = a.map((word)=> word.charAt(0).toUpperCase() + word.slice(1))
+    let c = b.join(' ');
+    return c;
+  })
+  console.log(array2);
 
   return (
     <div className='main'>
-      <Header categories={categories} />
+      <Header categories={categoryName} />
       <Carousel />
-      <Categories categories={categories} />
+      <Categories categories={categoryName} />
     </div>
   );
 }

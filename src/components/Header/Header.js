@@ -15,13 +15,13 @@ const colorWhite = {
 }
 
 const Header = ({ categories }) => {
-  let array = categories.map((category, i) => {
-    let a = category.split(" ");
-    let b = a.map((word)=> word.charAt(0).toUpperCase() + word.slice(1))
-    let c = b.join(' ');
-    return c;
-  })
-  console.log(array);
+  // let array = categories.map((category, i) => {
+  //   let a = category.split(" ");
+  //   let b = a.map((word)=> word.charAt(0).toUpperCase() + word.slice(1))
+  //   let c = b.join(' ');
+  //   return c;
+  // })
+  // console.log(categories);
   return (
     <>
       <Navbar style={colorWhite} collapseOnSelect expand={false} bg="dark" variant="dark">
@@ -35,7 +35,7 @@ const Header = ({ categories }) => {
 
             <NavDropdown style={{color: 'white !important'}} className="ms-auto" title="Categories" menuVariant="dark" id="navbarScrollingDropdown">
               {
-                array.map((cat)=> <NavDropdown.Item href={"#"+cat}>{cat}</NavDropdown.Item>)
+                categories.map((cat)=> <NavDropdown.Item href={"#"+cat}>{cat}</NavDropdown.Item>)
               }
             </NavDropdown>
 

@@ -1,11 +1,45 @@
-import React from 'react';
-import { Card, Button, Badge, InputGroup, FormControl } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Card, Button, Badge, InputGroup } from 'react-bootstrap';
 import './ProductCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 const ProductCard = (props) => {
   const { title, price, category, description, image} = props.product;
+  const [amount, setAmount] = useState(0);
+
+  const addToCart = () => {
+    return ( amount < 1 ? 
+      <Button 
+        variant="dark"
+        onClick={()=>setAmount(1)}
+        >
+        Add To cart
+        <FontAwesomeIcon 
+          style={{marginLeft: '7px'}}
+          icon={faShoppingCart} 
+          />
+      </Button>
+      :
+      <InputGroup style={{width: '130px'}}>
+        <Button 
+          variant="dark"
+          onClick={()=>setAmount(amount - 1)}
+        >
+          <FontAwesomeIcon icon={faMinus}/>
+        </Button>
+        <div className="d-flex" style={{width: '52px'}}>
+          <span className="m-auto">{amount}</span>
+        </div>
+        <Button 
+          variant="dark"
+          onClick={()=>setAmount(amount + 1)}
+        >
+          <FontAwesomeIcon icon={faPlus}/>
+        </Button>
+      </InputGroup>
+        )
+  }
   return (
     <Card style={{ width: '240px', margin: '3px'}}>
       <Card.Img style={{ height: '200px', objectFit: 'scale-down'}} variant="top" src={image} />
@@ -20,21 +54,7 @@ const ProductCard = (props) => {
         <h6>Price: ${price}</h6>
       </Card.Footer>
       <Card.Footer  style={{ backgroundColor: 'white', border: 'none'}}>
-        <Button variant="dark" className="mx-auto">
-          Add To cart
-          <FontAwesomeIcon style={{marginLeft: '7px'}} icon={faShoppingCart}/>
-          </Button>
-      </Card.Footer>
-      <Card.Footer style={{ backgroundColor: 'white', borderTop: 'none'}}>
-      <InputGroup style={{width: '130px'}} className="mx-auto">
-        <Button variant="dark">
-          <FontAwesomeIcon icon={faMinus}/>
-        </Button>
-        <FormControl aria-label="Buying Amount" />
-        <Button variant="dark">
-        <FontAwesomeIcon icon={faPlus}/>
-        </Button>
-      </InputGroup>
+        {addToCart()}
       </Card.Footer>
     </Card>
   );
