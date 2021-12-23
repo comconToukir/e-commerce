@@ -1,13 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import './Cart.css';
-import AddToCartButtons from '../AddToCartButtons/AddToCartButtons';
+import CartControlButtons from '../CartControlButtons/CartControlButtons';
 
 const Cart = () => {
   const cartList = useSelector(state => {
     return state.cart;
   })
   console.log(cartList);
+
   return (
     <div>
       {
@@ -15,7 +16,9 @@ const Cart = () => {
           return (
             <>
               <p className="truncate-overflow-cart-item">{cartItem.name}</p>
-              <AddToCartButtons />
+              
+              {/* <CartControlButtons title={cartItem.name} price={cartItem.price} amount={cartItem.amount} /> */}
+              <CartControlButtons title={cartItem.name} price={cartItem.price} amount={cartItem.amount} />
             </>
           )
         })

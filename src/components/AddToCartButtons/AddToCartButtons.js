@@ -6,7 +6,12 @@ import { useDispatch } from 'react-redux';
 import { increaseAmount, decreaseAmount, addToCart } from '../../state/action-creators/index';
 
 const AddToCartButtons = (props) => {
+  // const { title, price, amount } = props.product;
   const { title, price } = props.product;
+
+  // console.log(props);
+
+
   const [amount, setAmount] = useState(0);
   const dispatch = useDispatch();
 
@@ -27,7 +32,7 @@ const AddToCartButtons = (props) => {
   }
 
   const addToCartToggle = () => {
-    return ( amount < 1 ? 
+    return ( amount < 1 | amount === undefined ? 
       <Button 
         variant="dark"
         onClick={()=>handleAddToCart(title, price)}

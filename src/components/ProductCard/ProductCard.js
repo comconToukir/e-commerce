@@ -1,65 +1,12 @@
-import React, { useState } from 'react';
-import { Card, Button, Badge, InputGroup } from 'react-bootstrap';
+import React from 'react';
+import { Card, Badge } from 'react-bootstrap';
 import './ProductCard.css';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faShoppingCart, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-// import { useDispatch } from 'react-redux';
-// import { increaseAmount, decreaseAmount, addToCart } from '../../state/action-creators/index';
+
 import AddToCartButtons from '../AddToCartButtons/AddToCartButtons';
 
 const ProductCard = (props) => {
   const { title, price, category, description, image} = props.product;
-  // const [amount, setAmount] = useState(0);
-  // const dispatch = useDispatch();
-
-  // const handlePlus = (title1, price1) => {
-  //   setAmount(amount + 1);
-  //   dispatch(increaseAmount(title1, price1))
-  // }
-
-  // const handleMinus = (title1, price1) => {
-  //   setAmount(amount - 1);
-  //   dispatch(decreaseAmount(title1, price1))
-  // }
-
-
-  // const handleAddToCart = (title1, price1) => {
-  //   dispatch(addToCart(title1, price1))
-  //   handlePlus(title1, price1);
-  // }
-
-  // const addToCartToggle = () => {
-  //   return ( amount < 1 ? 
-  //     <Button 
-  //       variant="dark"
-  //       onClick={()=>handleAddToCart(title, price)}
-  //       >
-  //       Add To cart
-  //       <FontAwesomeIcon 
-  //         style={{marginLeft: '7px'}}
-  //         icon={faShoppingCart} 
-  //         />
-  //     </Button>
-  //     :
-  //     <InputGroup style={{width: '130px'}}>
-  //       <Button 
-  //         variant="dark"
-  //         onClick={()=>handleMinus(title, price)}
-  //       >
-  //         <FontAwesomeIcon icon={faMinus}/>
-  //       </Button>
-  //       <div className="d-flex" style={{width: '52px'}}>
-  //         <span className="m-auto">{amount}</span>
-  //       </div>
-  //       <Button 
-  //         variant="dark"
-  //         onClick={()=>handlePlus(title, price)}
-  //       >
-  //         <FontAwesomeIcon icon={faPlus}/>
-  //       </Button>
-  //     </InputGroup>
-  //       )
-  // }
+  
   return (
     <Card style={{ width: '240px', margin: '3px'}}>
       <Card.Img style={{ height: '200px', objectFit: 'scale-down'}} variant="top" src={image} />
@@ -75,6 +22,7 @@ const ProductCard = (props) => {
       </Card.Footer>
       <Card.Footer  style={{ backgroundColor: 'white', border: 'none'}}>
         <AddToCartButtons product={props.product} />
+        {/* <AddToCartButtons title={title} price={price} /> */}
       </Card.Footer>
     </Card>
   );
