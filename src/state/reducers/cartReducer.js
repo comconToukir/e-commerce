@@ -24,7 +24,8 @@ const cartReducer = (cartList = [], action) => {
         name: action.payload.name,
         price: action.payload.price,
         amount: cartList[i].amount - 1
-      }
+      },
+      ...cartList.slice(i + 1)
     ]
   }
   else {
