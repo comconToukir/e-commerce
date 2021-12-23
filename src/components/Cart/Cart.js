@@ -1,14 +1,22 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import './Cart.css';
 
 const Cart = () => {
-  const amount = useSelector(state=>{
-    return state.amount;
+  const cartList = useSelector(state => {
+    return state.cart;
   })
-  console.log(amount);
+  console.log(cartList);
   return (
     <div>
-      <p>{amount}</p>
+      {
+        cartList.map(cartItem => {
+          return (
+            <p className="truncate-overflow-cart-item">{cartItem.name}</p>
+            
+          )
+        })
+      }
     </div>
   );
 };

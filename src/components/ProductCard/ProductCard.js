@@ -4,28 +4,39 @@ import './ProductCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
-import { increaseAmount, decreaseAmount } from '../../state/action-creators/index';
+import { increaseAmount, decreaseAmount, addToCart } from '../../state/action-creators/index';
 
 const ProductCard = (props) => {
   const { title, price, category, description, image} = props.product;
   const [amount, setAmount] = useState(0);
   const dispatch = useDispatch();
 
-  const handlePlus = () => {
+  const handlePlus = (title1, price1) => {
     setAmount(amount + 1);
-    dispatch(increaseAmount(1))
+    dispatch(increaseAmount(title1, price1))
   }
 
-  const handleMinus = () => {
+  const handleMinus = (title1, price1) => {
     setAmount(amount - 1);
-    dispatch(decreaseAmount(1))
+    dispatch(decreaseAmount(title1, price1))
   }
 
-  const addToCart = () => {
+
+  const handleAddToCart = (title1, price1) => {
+    dispatch(addToCart(title1, price1))
+    handlePlus(title1, price1);
+  }
+
+  // const singleItem = {
+  //   title: `${title}`,
+  //   price: `${price}`
+  // }
+
+  const addToCartToggle = () => {
     return ( amount < 1 ? 
       <Button 
         variant="dark"
-        onClick={()=>handlePlus()}
+        onClick={()=>handleAddToCart(title, price)}
         >
         Add To cart
         <FontAwesomeIcon 
@@ -37,7 +48,7 @@ const ProductCard = (props) => {
       <InputGroup style={{width: '130px'}}>
         <Button 
           variant="dark"
-          onClick={()=>handleMinus()}
+          onClick={()=>handleMinus(title, price)}
         >
           <FontAwesomeIcon icon={faMinus}/>
         </Button>
@@ -46,7 +57,7 @@ const ProductCard = (props) => {
         </div>
         <Button 
           variant="dark"
-          onClick={()=>handlePlus()}
+          onClick={()=>handlePlus(title, price)}
         >
           <FontAwesomeIcon icon={faPlus}/>
         </Button>
@@ -67,7 +78,7 @@ const ProductCard = (props) => {
         <h6>Price: ${price}</h6>
       </Card.Footer>
       <Card.Footer  style={{ backgroundColor: 'white', border: 'none'}}>
-        {addToCart()}
+        {addToCartToggle()}
       </Card.Footer>
     </Card>
   );
