@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, InputGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import { increaseAmount, decreaseAmount, addToCart, removeFromCart } from '../../state/action-creators/index';
 
@@ -29,13 +29,17 @@ const CartControlButtons = (props) => {
   }
 
   const handleMinus = (title1, price1, amount1) => {
-    console.log(amount1);
+    // console.log(amount1);
     if (amount1 > 0) {
       dispatch(decreaseAmount(title1, price1));
     } 
     else {
       dispatch(removeFromCart(title));
     }
+  }
+
+  if (amount === 0) {
+    dispatch(removeFromCart(title));
   }
 
   // const addToCartToggle = () => {
@@ -76,6 +80,7 @@ const CartControlButtons = (props) => {
       {/* {addToCartToggle()} */}
       <InputGroup style={{width: '130px'}}>
         <Button 
+          className="ms-auto"
           variant="dark"
           onClick={()=>handleMinus(title, price, amount)}
         >
@@ -92,6 +97,7 @@ const CartControlButtons = (props) => {
         </Button>
       </InputGroup>
       <Button 
+          className="ms-2"
           variant="dark"
           onClick={()=>dispatch(removeFromCart(title))}
         >

@@ -2,42 +2,61 @@ import React, { useState } from 'react';
 import { Button, InputGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { increaseAmount, decreaseAmount, addToCart } from '../../state/action-creators/index';
+import { useDispatch } from 'react-redux';
+import { increaseAmount, decreaseAmount, addToCart, removeFromCart } from '../../state/action-creators/index';
+// import amountDisplay from '../amountDisplay/amountDisplay';
+// import store from '../../state/store';
 
-const AddToCartButtons = (props) => {
+const AddToCartButtons = ( props ) => {
   // const { title, price, amount } = props.product;
   // const [amount, setAmount] = useState(0);
-  const [amount, setAmount] = useState(0);
+  // const [amount, setAmount] = useState(0);
 
   const { title, price } = props.product;
+  // const { amount } = props.amount;
+  // const { cart } = props.cart;
+  console.log(props.amount)
+
+  // const { amount } = props.amount;
   const dispatch = useDispatch();
 
   // console.log(props);
-
-  // const item = useSelector(state => {state.cart.filter(a => a.name === title)});
+  // let item = [];
+  // if (cart === undefined || cart.length === 0) {
+  //   item = [];
+  // } else {
+  //   item = cart.filter(a => a.name === title);
+  // }
   
+  // let item = [];
+  // store.subscribe(() => {
+  //   item = store.getState();
+  // });
+  // console.log(item);
   
-  //   if (item === undefined || item.length === 0) {
-  //     setAmount(0)
-  //     // return amount
-  //   } else {
-  //     setAmount(item[0].amount)
-  //     // return amount
-  //   }
-
-
-
-
+  // let amount = 0;
+  
+  // if (item === undefined || item.length === 0) {
+  //   amount = 0;
+  //   // setAmount(0);
+  // } else {
+  //   amount = item[0].amount;
+  //   // setAmount(item[0].amount);
+  // }
+  // console.log(amount);
 
   const handlePlus = (title1, price1) => {
-    setAmount(amount + 1);
-    dispatch(increaseAmount(title1, price1))
+    // setAmount(amount + 1);
+    dispatch(increaseAmount(title1, price1));
   }
 
   const handleMinus = (title1, price1) => {
-    setAmount(amount + 1);
-    dispatch(decreaseAmount(title1, price1))
+    // setAmount(amount - 1);
+    if (props.amount > 0) {
+      dispatch(decreaseAmount(title1, price1));
+    } else {
+      dispatch(removeFromCart(title1));
+    }
   }
 
 
@@ -47,7 +66,7 @@ const AddToCartButtons = (props) => {
   }
 
   const addToCartToggle = () => {
-    return ( amount < 1 || amount === undefined ? 
+    return ( props.amount < 1 || props.amount === undefined ? 
       <Button 
         variant="dark"
         onClick={()=>handleAddToCart(title, price)}
@@ -59,6 +78,7 @@ const AddToCartButtons = (props) => {
           />
       </Button>
       :
+      <>
       <InputGroup style={{width: '130px'}}>
         <Button 
           variant="dark"
@@ -67,7 +87,7 @@ const AddToCartButtons = (props) => {
           <FontAwesomeIcon icon={faMinus}/>
         </Button>
         <div className="d-flex" style={{width: '52px'}}>
-          <span className="m-auto">{amount}</span>
+          <span className="m-auto">{props.amount}</span>
         </div>
         <Button 
           variant="dark"
@@ -76,6 +96,15 @@ const AddToCartButtons = (props) => {
           <FontAwesomeIcon icon={faPlus}/>
         </Button>
       </InputGroup>
+
+      <Button 
+        className="ms-2"
+        variant="dark"
+        onClick={()=>dispatch(removeFromCart(title))}
+        >
+        X
+      </Button>
+      </>
     )
   }
   return (
