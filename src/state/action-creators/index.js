@@ -1,37 +1,34 @@
-export const increaseAmount = (name, price, amount) => {
+export const increaseAmount = (name, price) => {
   return (dispatch) => {
     dispatch({
       type: 'INCREASE-AMOUNT',
       payload: {
         name,
-        price,
-        amount
+        price
       }
     })
   }
 }
 
-export const decreaseAmount = (name, price, amount) => {
+export const decreaseAmount = (name, price) => {
   return (dispatch) => {
     dispatch({
       type:'DECREASE-AMOUNT',
       payload: {
         name,
-        price,
-        amount
+        price
       }
     })
   }
 }
 
-export const addToCart = (name, price, amount) => {
+export const addToCart = (name, price) => {
   return (dispatch) => {
     dispatch({
       type:'ADD-TO-CART',
       payload: {
         name,
-        price,
-        amount
+        price
       }
     })
   }

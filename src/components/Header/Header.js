@@ -1,4 +1,4 @@
-import { Container, Navbar, Nav, NavDropdown, Offcanvas} from 'react-bootstrap';
+import { Container, Navbar, NavDropdown, Offcanvas} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
@@ -20,12 +20,15 @@ const Header = ({ categories }) => {
     <>
       <Navbar style={colorWhite} collapseOnSelect expand={false} bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-
-              {/* <Nav.Link className="ms-auto " href="#fashion">Fashion</Nav.Link>
-              <Nav.Link href="#health">Health</Nav.Link>
-              <Nav.Link href="#sport">Sport</Nav.Link>
-              <Nav.Link href="#tech">Tech</Nav.Link> */}
+          <Navbar.Brand href="#home">
+            <img
+              // className="d-block w-100"
+              style={{height: "40px", display: 'inline-block'}}
+              src={process.env.PUBLIC_URL + '/icons/brand-logo.png'}
+              alt="Brand Logo"
+            />
+            <h4 className="d-inline-block ms-3 text-align-center">E-COMMERCE</h4>
+          </Navbar.Brand>
 
             <NavDropdown style={{color: 'white !important'}} className="ms-auto" title="Categories" menuVariant="dark" id="navbarScrollingDropdown">
               {
@@ -49,7 +52,6 @@ const Header = ({ categories }) => {
                 <Offcanvas.Title id="offcanvasNavbarLabel">Cart</Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
-                <p>place for cart</p>
                 <Cart></Cart>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

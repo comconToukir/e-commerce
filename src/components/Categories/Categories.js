@@ -12,7 +12,7 @@ const Categories = ({categories, uniqueCategoryName, apiData}) => {
   const cart = useSelector(state => {
     return state.cart;
   })
-  console.log(cart)
+  // console.log(cart)
 
   // let eventName = categories.map((category) => {
   //   let a = category.split("'");
@@ -28,7 +28,7 @@ const Categories = ({categories, uniqueCategoryName, apiData}) => {
 
 
   return (
-      <Container>
+      <Container className="pb-5">
         <Tabs
           id="controlled-tab-example"
           activeKey={key}

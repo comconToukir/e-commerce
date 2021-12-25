@@ -7,12 +7,12 @@ const Cart = () => {
   const cartList = useSelector(state => {
     return state.cart;
   })
-  console.log(cartList);
+  // console.log(cartList);
 
   let arr = [];
   cartList.map(item => arr.push(item.price * item.amount))
   let totalPrice = arr.reduce((acc, current) => acc + current, 0);
-  console.log(totalPrice);
+  // console.log(totalPrice);
 
   return (
     <div>
@@ -22,8 +22,6 @@ const Cart = () => {
             <>
               <div className="d-flex">
                 <p className="me-auto truncate-overflow-cart-item">{cartItem.name}</p>
-                
-                {/* <CartControlButtons title={cartItem.name} price={cartItem.price} amount={cartItem.amount} /> */}
                 <CartControlButtons title={cartItem.name} price={cartItem.price} amount={cartItem.amount} />
               </div>
             </>
