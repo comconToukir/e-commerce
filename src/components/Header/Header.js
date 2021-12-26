@@ -12,13 +12,16 @@ const userIconStyle = {
 }
 
 const colorWhite = {
-  color: 'white'
+  color: 'white',
+  position: 'sticky'
 }
 
-const Header = ({ categories }) => {
+const Header = ({ categories, cart }) => {
+  const itemCount = cart.length;
+  console.log(itemCount);
   return (
     <>
-      <Navbar style={colorWhite} collapseOnSelect expand={false} bg="dark" variant="dark">
+      <Navbar style={colorWhite} collapseOnSelect expand={false} bg="dark" variant="dark" sticky="top">
         <Container>
           <Navbar.Brand href="#home">
             <img
@@ -27,29 +30,30 @@ const Header = ({ categories }) => {
               src={process.env.PUBLIC_URL + '/icons/brand-logo.png'}
               alt="Brand Logo"
             />
-            <h4 className="d-inline-block ms-3 text-align-center">E-COMMERCE</h4>
+            <h4 className="d-none d-sm-inline-block ms-3 text-align-center">E-COMMERCE</h4>
           </Navbar.Brand>
 
-            <NavDropdown style={{color: 'white !important'}} className="ms-auto" title="Categories" menuVariant="dark" id="navbarScrollingDropdown">
-              {
-                categories.map((cat)=> <NavDropdown.Item href={"#"+cat}>{cat}</NavDropdown.Item>)
-              }
-            </NavDropdown>
+          <NavDropdown className="ms-auto category-dropdown" title="Categories" menuVariant="dark" id="navbarScrollingDropdown">
+            {
+              categories.map((cat)=> <NavDropdown.Item href={"#"+cat}>{cat}</NavDropdown.Item>)
+            }
+          </NavDropdown>
 
-            <FontAwesomeIcon style={userIconStyle} icon={faUser}/>
+          <FontAwesomeIcon style={userIconStyle} icon={faUser}/>
 
-            <Navbar.Toggle >
-              <span className="ms-auto" aria-controls="offcanvasNavbar">
-                <FontAwesomeIcon style={colorWhite} icon={faShoppingCart}/>
-              </span>
+          <Navbar.Toggle >
+            <span className="ms-auto" aria-controls="offcanvasNavbar">
+              <FontAwesomeIcon style={colorWhite} icon={faShoppingCart}/>
+            </span>
           </Navbar.Toggle>
+            <span className="item-count">{itemCount}</span>
           <Navbar.Offcanvas
               id="offcanvasNavbar"
               aria-labelledby="offcanvasNavbarLabel"
               placement="end"
             >
               <Offcanvas.Header closeButton>
-                <Offcanvas.Title id="offcanvasNavbarLabel">Cart</Offcanvas.Title>
+                <Offcanvas.Title id="offcanvasNavbarLabel" className="d-block w-100 lightblue-bg">Cart</Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Cart></Cart>

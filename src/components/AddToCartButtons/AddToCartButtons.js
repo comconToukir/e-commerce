@@ -60,12 +60,17 @@ const AddToCartButtons = ( props ) => {
         </InputGroup>
 
         <Button 
-          className="ms-auto"
+          className="ms-auto d-grid"
           variant="dark"
-          style={{width: "40px"}}
+          // style={{width: "40px"}}
           onClick={()=>dispatch(removeFromCart(title))}
           >
-            X
+            <img
+              // className="d-block w-100"
+              style={{width: "23px"}}
+              src={process.env.PUBLIC_URL + '/icons/circle-xmark-regular.svg'}
+              alt="Remove from cart"
+            />
         </Button>
       </div>
     )

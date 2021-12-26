@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Header from './components/Header/Header';
 import Carousel from './components/Carousel/Carousel';
 import Categories from './components/Categories/Categories';
@@ -13,6 +14,10 @@ function App() {
                 .then(res=>res.json())
                 .then(json=>setApiData(json))
   }, []);
+
+  const cart = useSelector(state => {
+    return state.cart;
+  })
 
   let array1 = [];
   for (let i = 0; i < apiData.length; i++){
@@ -40,12 +45,14 @@ function App() {
     <div className='main'>
       <Header 
         categories={categoryName} 
+        cart={cart}
       />
       <Carousel />
       <Categories 
         categories={categoryName} 
         uniqueCategoryName={uniqueCategoryName}
         apiData={apiData}
+        cart={cart}
       />
     </div>
   );

@@ -52,7 +52,11 @@ const CartControlButtons = (props) => {
           variant="dark"
           onClick={()=>dispatch(removeFromCart(title))}
         >
-          X
+          <img
+              style={{width: "23px"}}
+              src={process.env.PUBLIC_URL + '/icons/circle-xmark-regular.svg'}
+              alt="Remove from cart"
+            />
         </Button>
     </>
   );

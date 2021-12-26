@@ -21,19 +21,19 @@ const ProductCard = (props) => {
     amount = item[0].amount;
   }
   return (
-    <Card style={{ width: '240px', margin: '5px'}} className="individual-card">
+    <Card style={{ width: '240px', margin: '5px'}} className="individual-card trans">
       <Card.Img style={{ height: '200px', padding: '7px', objectFit: 'scale-down'}} variant="top" src={image} />
       <Card.Body>
-        <Card.Title className="truncate-overflow">{title}</Card.Title>
+        <Card.Title className="truncate-overflow-2">{title}</Card.Title>
         <Badge className="category-badge" bg="secondary">{category}</Badge>
-        <Card.Text className="truncate-overflow">
+        <Card.Text className="truncate-overflow-3">
           {description}
         </Card.Text>
       </Card.Body>
       <Card.Footer style={{ backgroundColor: 'white', borderTop: 'none'}}>
         <h6>Price: ${price}</h6>
       </Card.Footer>
-      <Card.Footer  style={{ backgroundColor: 'white', border: 'none'}}>
+      <Card.Footer className="mb-2" style={{ backgroundColor: 'white', border: 'none' }}>
         <AddToCartButtons product={props.product} cart={props.cart} amount={amount} />
       </Card.Footer>
     </Card>

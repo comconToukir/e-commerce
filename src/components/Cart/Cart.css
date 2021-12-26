@@ -1,7 +1,14 @@
+/* .cart-item {
+  mar
+} */
 .truncate-overflow-cart-item {
   font-size: 13px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 150px;
+}
+.lightblue-bg {
+  background-color: #f6f9ff;
+  padding: 5px;
 }

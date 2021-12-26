@@ -1,0 +1,29 @@
+.nav-item button {
+  color: black;
+  border: none!important;
+  border-radius: 5px;
+}
+.nav-item:hover {
+  color: black!important;
+  /* border-bottom: 2px solid white!important;
+  border-radius: 5px; */
+}
+.nav-item button:hover {
+  color: black!important;
+  /* border-bottom: 2px solid white!important; */
+  /* border-radius: 5px; */
+}
+.nav-item button.active {
+  color: black!important;
+  /* border-top: 1px solid black; */
+  border-top: 1px solid #dee2e6!important;
+  border-right: 1px solid #dee2e6!important;
+  border-left: 1px solid #dee2e6!important;
+  /* border-radius: 5px; */
+}
+.nav-item .active {
+  color: black;
+  font-weight: 500;
+  /* background: white; */
+  border-radius: 5px;
+}

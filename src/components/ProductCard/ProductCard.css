@@ -4,22 +4,38 @@
   border: none;
   border-radius: 10px!important;
   overflow: hidden;
-  box-shadow: 2px 2px 5px rgb(236, 236, 236);
+  /* box-shadow: 2px 2px 5px rgb(236, 236, 236); */
 }
 
 .individual-card:hover {
   /* background-color: #cdddfc; */
   width: 250px;
-  top: -5px;
-  border-radius: 15px!important;
+  /* top: -5px; */
+  /* border-radius: 15px!important; */
   z-index: 999;
-  box-shadow: 3px 3px 7px lightgray;
+  box-shadow: 0px 0px 15px rgb(228, 227, 227);
 
 }
 
-.truncate-overflow {
+.truncate-overflow-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+}
+
+.truncate-overflow-3 {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;  
+  -webkit-box-orient: vertical; 
+}
+
+.trans {
+  -webkit-transition: 
+    box-shadow .2s ease-in-out,
+    top .2s ease-in-out;
+  transition: 
+    box-shadow .2s ease-in-out,
+    top .2s ease-in-out;
 }

@@ -5,13 +5,14 @@ import Electronics from '../Electronics/Electronics';
 import Jewelery from '../Jewelery/Jewelery';
 import MensClothing from '../MensClothing/MensClothing';
 import WomensClothing from '../WomensClothing/WomensClothing';
+import './Categories.css';
 
-const Categories = ({categories, uniqueCategoryName, apiData}) => {
+const Categories = ({categories, uniqueCategoryName, apiData, cart}) => {
   const [key, setKey] = useState('electronics');
 
-  const cart = useSelector(state => {
-    return state.cart;
-  })
+  // const cart = useSelector(state => {
+  //   return state.cart;
+  // })
   // console.log(cart)
 
   // let eventName = categories.map((category) => {
@@ -28,7 +29,7 @@ const Categories = ({categories, uniqueCategoryName, apiData}) => {
 
 
   return (
-      <Container className="pb-5">
+      <Container className="pb-3 mb-5 product-container">
         <Tabs
           id="controlled-tab-example"
           activeKey={key}
