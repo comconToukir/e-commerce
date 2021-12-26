@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Container, Navbar, NavDropdown, Offcanvas} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -17,8 +18,9 @@ const colorWhite = {
 }
 
 const Header = ({ categories, cart }) => {
-  const itemCount = cart.length;
-  console.log(itemCount);
+  // const [itemCount, setItemCount] = useState(0);
+  // setItemCount(cart.length);
+  // console.log(itemCount);
   return (
     <>
       <Navbar style={colorWhite} collapseOnSelect expand={false} bg="dark" variant="dark" sticky="top">
@@ -46,7 +48,7 @@ const Header = ({ categories, cart }) => {
               <FontAwesomeIcon style={colorWhite} icon={faShoppingCart}/>
             </span>
           </Navbar.Toggle>
-            <span className="item-count">{itemCount}</span>
+            <span className="item-count">{cart.length}</span>
           <Navbar.Offcanvas
               id="offcanvasNavbar"
               aria-labelledby="offcanvasNavbarLabel"

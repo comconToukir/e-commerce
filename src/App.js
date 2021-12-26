@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [ apiData, setApiData ] = useState([]);
+  // const [itemCount, setItemCount ] = useState(0);
   useEffect(() => {
     const apiLink = 'https://fakestoreapi.com/products';
     fetch(apiLink)
@@ -16,8 +17,11 @@ function App() {
   }, []);
 
   const cart = useSelector(state => {
+    // setItemCount(state.cart.length);
     return state.cart;
   })
+
+  // const itemCount = cart.length;
 
   let array1 = [];
   for (let i = 0; i < apiData.length; i++){
@@ -46,6 +50,7 @@ function App() {
       <Header 
         categories={categoryName} 
         cart={cart}
+        // itemCount={itemCount}
       />
       <Carousel />
       <Categories 
