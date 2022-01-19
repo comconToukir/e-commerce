@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { connect } from 'react-redux';
 import { Container, Navbar, NavDropdown, Offcanvas} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -68,4 +69,13 @@ const Header = ({ categories, cart }) => {
   );
 };
 
-export default Header;
+const mapStateToProps = state => {
+  return {
+    cart: state.cart,
+  }
+}
+
+const mapDispatchToProps = {}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
+// export default Header;

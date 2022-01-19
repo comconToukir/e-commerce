@@ -1,34 +1,40 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { connect } from 'react-redux';
 import { Button, InputGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { increaseAmount, decreaseAmount, addToCart, removeFromCart } from '../../state/action-creators/index';
 
 const AddToCartButtons = ( props ) => {
+  const {amount, increaseAmount, decreaseAmount, addToCart, removeFromCart} = props;
   const { title, price } = props.product;
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    if (amount === 0) {
+      removeFromCart(title);
+    }
+  }, [amount, title, removeFromCart]);
 
   const handlePlus = (title1, price1) => {
-    dispatch(increaseAmount(title1, price1));
+    increaseAmount(title1, price1);
   }
 
   const handleMinus = (title1, price1) => {
-    if (props.amount > 0) {
-      dispatch(decreaseAmount(title1, price1));
+    if (amount > 0) {
+      decreaseAmount(title1, price1);
     } else {
-      dispatch(removeFromCart(title1));
+      removeFromCart(title1);
     }
   }
 
   const handleAddToCart = (title1, price1) => {
-    dispatch(addToCart(title1, price1))
+    addToCart(title1, price1)
     handlePlus(title1, price1);
   }
 
   const addToCartToggle = () => {
-    return ( props.amount < 1 || props.amount === undefined ? 
+    return ( amount < 1 || amount === undefined ? 
       <Button 
         variant="dark"
         onClick={()=>handleAddToCart(title, price)}
@@ -49,7 +55,7 @@ const AddToCartButtons = ( props ) => {
             <FontAwesomeIcon icon={faMinus}/>
           </Button>
           <div className="d-flex" style={{width: '52px'}}>
-            <span className="m-auto">{props.amount}</span>
+            <span className="m-auto">{amount}</span>
           </div>
           <Button 
             variant="dark"
@@ -62,11 +68,9 @@ const AddToCartButtons = ( props ) => {
         <Button 
           className="ms-auto d-grid"
           variant="dark"
-          // style={{width: "40px"}}
-          onClick={()=>dispatch(removeFromCart(title))}
+          onClick={()=>removeFromCart(title)}
           >
             <img
-              // className="d-block w-100"
               style={{width: "23px"}}
               src={process.env.PUBLIC_URL + '/icons/circle-xmark-regular.svg'}
               alt="Remove from cart"
@@ -82,4 +86,16 @@ const AddToCartButtons = ( props ) => {
   );
 };
 
-export default AddToCartButtons;
+
+const mapStateToProps = state => {
+  return {}
+}
+
+const mapDispatchToProps = {
+  increaseAmount: increaseAmount,
+  decreaseAmount: decreaseAmount,
+  addToCart: addToCart,
+  removeFromCart: removeFromCart,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddToCartButtons);

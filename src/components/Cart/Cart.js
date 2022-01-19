@@ -1,17 +1,18 @@
 import React from 'react';
 import { Button, InputGroup } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useSelector, connect } from 'react-redux';
 import './Cart.css';
 import CartControlButtons from '../CartControlButtons/CartControlButtons';
 
-const Cart = () => {
-  const cartList = useSelector(state => {
-    return state.cart;
-  })
+const Cart = (props) => {
+  const {cart} = props;
+  // const cartList = useSelector(state => {
+  //   return state.cart;
+  // })
   // console.log(cartList);
 
   let arr = [];
-  cartList.map(item => arr.push(item.price * item.amount))
+  cart.map(item => arr.push(item.price * item.amount))
   let totalPrice = arr.reduce((acc, current) => acc + current, 0);
   totalPrice = Math.round(totalPrice * 100) / 100;
   // console.log(totalPrice);
@@ -19,7 +20,7 @@ const Cart = () => {
   return (
     <div>
       {
-        cartList.map(cartItem => {
+        cart.map(cartItem => {
           return (
             <>
               <div className="d-flex align-items-center mb-2">
@@ -39,4 +40,13 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+const mapStateToProps = state => {
+  return {
+    cart: state.cart,
+  }
+}
+
+const mapDispatchToProps = {}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+// export default Cart;

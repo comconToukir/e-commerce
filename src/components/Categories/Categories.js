@@ -7,7 +7,7 @@ import MensClothing from '../MensClothing/MensClothing';
 import WomensClothing from '../WomensClothing/WomensClothing';
 import './Categories.css';
 
-const Categories = ({categories, uniqueCategoryName, apiData, cart}) => {
+const Categories = ({categories, uniqueCategoryName, apiData}) => {
   const [key, setKey] = useState('electronics');
 
   // const cart = useSelector(state => {
@@ -39,16 +39,16 @@ const Categories = ({categories, uniqueCategoryName, apiData, cart}) => {
 
 
           <Tab eventKey="electronics" title="Electronics">
-            <Electronics uniqueCategoryName={uniqueCategoryName} apiData={apiData} cart={cart}/>
+            <Electronics uniqueCategoryName={uniqueCategoryName} apiData={apiData} />
           </Tab>
           <Tab eventKey="jewelery" title="Jewelery">
-            <Jewelery uniqueCategoryName={uniqueCategoryName} apiData={apiData} cart={cart} />
+            <Jewelery uniqueCategoryName={uniqueCategoryName} apiData={apiData} />
           </Tab>
           <Tab eventKey="mensClothing" title="MensClothing">
-            <MensClothing uniqueCategoryName={uniqueCategoryName} apiData={apiData} cart={cart} />
+            <MensClothing uniqueCategoryName={uniqueCategoryName} apiData={apiData} />
           </Tab>
           <Tab eventKey="womensClothing" title="WomensClothing">
-            <WomensClothing uniqueCategoryName={uniqueCategoryName} apiData={apiData} cart={cart} />
+            <WomensClothing uniqueCategoryName={uniqueCategoryName} apiData={apiData} />
           </Tab>
         </Tabs>
       </Container>

@@ -1,22 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Card, Badge } from 'react-bootstrap';
 import AddToCartButtons from '../AddToCartButtons/AddToCartButtons';
 import './ProductCard.css';
 
 const ProductCard = (props) => {
+  const {cart} = props;
   const { title, price, category, description, image} = props.product;
 
   let item = [];
-  if (props.cart === undefined || props.cart.length === 0) {
+  if (cart === undefined || cart.length === 0) {
     item = [];
   } else {
-    item = props.cart.filter(a => a.name === title);
+    item = cart.filter(a => a.name === title);
   }
 
-  let amount = 0;
+  let amount;
   
   if (item === undefined || item.length === 0) {
-    amount = 0;
+    amount = null;
   } else {
     amount = item[0].amount;
   }
@@ -34,10 +36,19 @@ const ProductCard = (props) => {
         <h6>Price: ${price}</h6>
       </Card.Footer>
       <Card.Footer className="mb-2" style={{ backgroundColor: 'white', border: 'none' }}>
-        <AddToCartButtons product={props.product} cart={props.cart} amount={amount} />
+        <AddToCartButtons product={props.product} cart={cart} amount={amount} />
       </Card.Footer>
     </Card>
   );
 };
 
-export default ProductCard;
+const mapStateToProps = state => {
+  return {
+    cart: state.cart,
+  }
+}
+
+const mapDispatchToProps = {}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);
+// export default ProductCard;

@@ -1,30 +1,36 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Button, InputGroup } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { increaseAmount, decreaseAmount, removeFromCart } from '../../state/action-creators/index';
 
 const CartControlButtons = (props) => {
-  const { title, price, amount } = props;
+  const { title, price, amount, increaseAmount, decreaseAmount, removeFromCart } = props;
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handlePlus = (title1, price1) => {
-    dispatch(increaseAmount(title1, price1))
+    // dispatch(increaseAmount(title1, price1))
+    increaseAmount(title1, price1)
+
   }
 
   const handleMinus = (title1, price1, amount1) => {
     if (amount1 > 0) {
-      dispatch(decreaseAmount(title1, price1));
+      // dispatch(decreaseAmount(title1, price1));
+      decreaseAmount(title1, price1);
     } 
     else {
-      dispatch(removeFromCart(title));
+      // dispatch(removeFromCart(title));
+      removeFromCart(title);
     }
   }
 
   if (amount === 0) {
-    dispatch(removeFromCart(title));
+    // dispatch(removeFromCart(title));
+    removeFromCart(title);
   }
 
   return (
@@ -50,7 +56,8 @@ const CartControlButtons = (props) => {
       <Button 
           className="ms-2"
           variant="dark"
-          onClick={()=>dispatch(removeFromCart(title))}
+          // onClick={()=>dispatch(removeFromCart(title))}
+          onClick={()=>removeFromCart(title)}
         >
           <img
               style={{width: "23px"}}
@@ -62,4 +69,15 @@ const CartControlButtons = (props) => {
   );
 };
 
-export default CartControlButtons;
+const mapStateToProps = state => {
+  return {}
+}
+
+const mapDispatchToProps = {
+  increaseAmount: increaseAmount,
+  decreaseAmount: decreaseAmount,
+  removeFromCart: removeFromCart,
+}
+
+// export default CartControlButtons;
+export default connect(mapStateToProps, mapDispatchToProps)(CartControlButtons);
